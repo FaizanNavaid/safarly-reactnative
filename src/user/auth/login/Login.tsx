@@ -24,8 +24,8 @@ type LoginForm = Omit<LoginPayload, 'machineDetail'>
 
 export default function Login() {
   const [model, setModel] = useState<LoginForm>({
-    email: __DEV__ ? 'faizanansari998800@gmail.com' : '',
-    password: __DEV__ ? 'Faizan100@' : '',
+    email:  '',
+    password: '',
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<ErrorModel>({});

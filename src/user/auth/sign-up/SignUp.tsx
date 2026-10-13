@@ -21,12 +21,12 @@ import { OfferIcon, ShowIcon } from '../../assets/icons';
 
 export default function SignUp() {
   const [model, setModel] = useState<SignUpPayload>({
-    firstName: __DEV__ ? 'Faizan' : '',
-    lastName: __DEV__ ? 'Navaid' : '',
-    email: __DEV__ ? 'faizanansari998800@gmail.com' : '',
-    phone: __DEV__ ? '03278433510' : '',
-    password: __DEV__ ? 'Faizan100@' : '',
-    confirmPassword: __DEV__ ? 'Faizan100@' : '',
+    firstName:  '',
+    lastName:  '',
+    email:  '',
+    phone:  '',
+    password:  '',
+    confirmPassword:  '',
     machineDetail: {},
   });
   const [isLoading, setIsLoading] = useState(false);
