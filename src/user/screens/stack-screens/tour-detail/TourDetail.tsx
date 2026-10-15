@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   ActivityIndicator,
   ScrollView,
@@ -21,6 +21,9 @@ import { END_POINT } from '../../../services/api/endPoint'
 import { TourDetail as TourDetailType } from '../../../services/interface/interface'
 import { BackIcon, StarIcon, LocationIcon } from '../../../assets/icons'
 import AppImage from '../../../components/app-image'
+import DetailSkeleton from '../../../components/skeleton/DetailSkeleton'
+import BookingSheet, { BookingSheetRef } from '../../../components/booking-sheet/BookingSheet'
+import { BookingIcon } from '../../../assets/icons'
 
 type ParamList = { TourDetail: { slug: string } }
 
@@ -32,6 +35,7 @@ export default function TourDetail() {
   const route = useRoute<RouteProp<ParamList, 'TourDetail'>>()
   const token = useAppSelector(state => state.user.token)
 
+  const bookingRef = useRef<BookingSheetRef>(null)
   const [data, setData] = useState<TourDetailType | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -61,11 +65,7 @@ export default function TourDetail() {
   }, [fetchDetail])
 
   if (loading) {
-    return (
-      <View style={styles.centered}>
-        <ActivityIndicator size="large" color={theme.primary} />
-      </View>
-    )
+    return <DetailSkeleton />
   }
 
   if (error || !data) {
@@ -191,8 +191,28 @@ export default function TourDetail() {
           )}
         </View>
 
-        <View style={{ height: scale(30) }} />
+        <View style={{ height: scale(80) }} />
       </ScrollView>
+
+      <View style={styles.bookBtnWrap}>
+        <TouchableOpacity
+          style={styles.bookBtn}
+          onPress={() => bookingRef.current?.open()}
+          activeOpacity={0.7}
+        >
+          <BookingIcon width={scale(16)} height={scale(16)} color={theme.buttonText} />
+          <Text style={styles.bookBtnText}>{t('booking.bookNow')}</Text>
+        </TouchableOpacity>
+      </View>
+
+      <BookingSheet
+        ref={bookingRef}
+        config={{
+          bookingType: 'tour',
+          tourId: tour._id,
+          tourTitle: tour.title,
+        }}
+      />
     </View>
   )
 }
@@ -282,4 +302,31 @@ const getStyles = (theme: ThemeColors) =>
     reviewRating: { flexDirection: 'row', alignItems: 'center' },
     reviewRatingVal: { fontSize: scale(10), fontWeight: '600', color: theme.text, marginLeft: scale(3) },
     reviewComment: { fontSize: scale(11), color: theme.subText, marginTop: scale(6), lineHeight: scale(17) },
+
+    bookBtnWrap: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      paddingHorizontal: scale(16),
+      paddingBottom: scale(20),
+      paddingTop: scale(10),
+      backgroundColor: theme.mainBg,
+      borderTopWidth: 1,
+      borderTopColor: theme.divider,
+    },
+    bookBtn: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: theme.primary,
+      height: scale(48),
+      borderRadius: scale(12),
+      gap: scale(8),
+    },
+    bookBtnText: {
+      fontSize: scale(15),
+      fontWeight: '700',
+      color: theme.buttonText,
+    },
   })

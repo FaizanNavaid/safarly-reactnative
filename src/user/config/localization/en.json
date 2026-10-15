@@ -251,7 +251,8 @@
     "bookingError": "Could not create booking",
     "required": "This field is required",
     "selectDate": "Select Date",
-    "guestCount": "Guest Count"
+    "guestCount": "Guest Count",
+    "bookNow": "Book Now"
   },
   "logout": {
     "title": "Logout",

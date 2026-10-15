@@ -447,6 +447,9 @@ export default function BookingStepOne() {
         <AppButton title={t('booking.continue')} onPress={handleContinue} containerStyle={styles.continueBtn} />
       </ScrollView>
 
+    </View>
+   </SafeAreaView>
+
       <AppBottomSheet
         ref={sheetRef}
         title={sheetType === 'tour' ? t('booking.selectTour') : t('booking.selectHotel')}
@@ -484,8 +487,6 @@ export default function BookingStepOne() {
           ))
         )}
       </AppBottomSheet>
-    </View>
-   </SafeAreaView>
    </>
   )
 }

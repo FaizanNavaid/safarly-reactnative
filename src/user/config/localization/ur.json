@@ -251,7 +251,8 @@
     "bookingError": "بکنگ نہیں بن سکی",
     "required": "یہ فیلڈ ضروری ہے",
     "selectDate": "تاریخ منتخب کریں",
-    "guestCount": "مہمانوں کی تعداد"
+    "guestCount": "مہمانوں کی تعداد",
+    "bookNow": "ابھی بک کریں"
   },
   "logout": {
     "title": "لاگ آؤٹ",

@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import {
-  ActivityIndicator,
   FlatList,
   ScrollView,
   StyleSheet,
@@ -25,6 +24,7 @@ import { SCREEN } from '../../../services/screen-names/ScreenName'
 import AppImage from '../../../components/app-image'
 import TourCard from '../../../components/cards/TourCard'
 import HotelCard from '../../../components/cards/HotelCard'
+import DetailSkeleton from '../../../components/skeleton/DetailSkeleton'
 
 type ParamList = { DestinationDetail: { slug: string } }
 
@@ -65,11 +65,7 @@ export default function DestinationDetail() {
   }, [fetchDetail])
 
   if (loading) {
-    return (
-      <View style={styles.centered}>
-        <ActivityIndicator size="large" color={theme.primary} />
-      </View>
-    )
+    return <DetailSkeleton />
   }
 
   if (error || !data) {

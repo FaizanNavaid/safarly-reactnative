@@ -22,8 +22,6 @@ export const SCREEN = {
 
   //   Drawer screens
   setting: 'Setting',
-  myTrips: 'MyTrips',
-
   //   Stack screens
   privacyPolicy: 'PrivacyPolicy',
   tripDetail: 'TripDetail',

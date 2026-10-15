@@ -32,6 +32,8 @@ import AppButton from '../../../components/buttons/app-button';
 import CustomHeader from '../../../components/custom-header';
 import { showSuccess, showError } from '../../../components/toast/AppToast';
 import { ApiError } from '../../../services/api/HttpHelper';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppStatusBar from '../../../components/status-bar/AppStatusBar';
 
 type RouteParams = {
   BookingStepTwo: {
@@ -220,7 +222,8 @@ export default function BookingStepTwo() {
   };
 
   return (
-    <View style={styles.safe}>
+    <SafeAreaView style={styles.safe} edges={['top']}>
+      <AppStatusBar />
       <CustomHeader title={t('booking.stepTwoTitle')} />
 
       <ScrollView
@@ -406,7 +409,7 @@ export default function BookingStepTwo() {
           containerStyle={styles.submitBtn}
         />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 

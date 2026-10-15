@@ -16,7 +16,6 @@ import { END_POINT } from '../../../services/api/endPoint'
 import { clearTokens, getRefreshToken } from '../../../services/helper/keychainHelper'
 import LogoutModal from '../../../components/logout-modal/LogoutModal'
 import TabNavigation from '../tab/TabNavigation'
-import MyTrips from '../../../screens/drawer-screens/my-trips/MyTrips'
 import Setting from '../../../screens/drawer-screens/setting/Setting'
 
 const Drawer = createDrawerNavigator()
@@ -42,11 +41,6 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
       name: SCREEN.tabs,
       label: t('drawer.home'),
       icon: (color: string) => <HomeIcon width={scale(22)} height={scale(22)} color={color} />,
-    },
-    {
-      name: SCREEN.myTrips,
-      label: t('drawer.myTrips'),
-      icon: (color: string) => <TripIcon width={scale(22)} height={scale(22)} color={color} />,
     },
     {
       name: SCREEN.setting,
@@ -154,7 +148,6 @@ export default function DrawerNavigation() {
       }}
     >
       <Drawer.Screen name={SCREEN.tabs} component={TabNavigation} />
-      <Drawer.Screen name={SCREEN.myTrips} component={MyTrips} />
       <Drawer.Screen name={SCREEN.setting} component={Setting} />
     </Drawer.Navigator>
   )
