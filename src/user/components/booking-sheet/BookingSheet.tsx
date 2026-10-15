@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import BottomSheet, { BottomSheetBackdrop, BottomSheetScrollView } from '@gorhom/bottom-sheet'
+import BottomSheet, { BottomSheetBackdrop, BottomSheetScrollView, BottomSheetTextInput } from '@gorhom/bottom-sheet'
 import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker'
 import { useTranslation } from 'react-i18next'
 
@@ -65,6 +65,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
   const token = useAppSelector(state => state.user.token)
   const user = useAppSelector(state => state.user)
 
+  const SheetInput = BottomSheetTextInput
   const sheetRef = useRef<BottomSheet>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [step, setStep] = useState(0)
@@ -411,6 +412,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
       )}
 
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.pickupLocation')}
         placeholder={t('booking.pickupPlaceholder')}
         value={pickupLocation}
@@ -437,6 +439,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
       <Text style={styles.sectionLabel}>{t('booking.traveler')}</Text>
 
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.firstName')}
         placeholder={t('booking.firstName')}
         value={firstName}
@@ -444,6 +447,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
         error={errors.firstName}
       />
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.lastName')}
         placeholder={t('booking.lastName')}
         value={lastName}
@@ -451,6 +455,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
         error={errors.lastName}
       />
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.email')}
         placeholder={t('booking.email')}
         value={email}
@@ -460,6 +465,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
         autoCapitalize="none"
       />
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.phone')}
         placeholder={t('booking.phone')}
         value={phone}
@@ -468,6 +474,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
         keyboardType="phone-pad"
       />
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.cnic')}
         placeholder="35202-1234567-1"
         value={cnic}
@@ -476,6 +483,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
         keyboardType="number-pad"
       />
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.dateOfBirth')}
         placeholder="1998-04-12"
         value={dob}
@@ -487,6 +495,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
       {renderPill(GENDERS, gender, setGender, g => t(`booking.${g}`))}
 
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.address')}
         placeholder={t('booking.address')}
         value={address}
@@ -494,6 +503,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
         error={errors.address}
       />
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.city')}
         placeholder={t('booking.city')}
         value={city}
@@ -504,6 +514,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
       <Text style={styles.sectionLabel}>{t('booking.emergencyContact')}</Text>
 
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.emergencyName')}
         placeholder={t('booking.emergencyName')}
         value={emergencyName}
@@ -511,6 +522,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
         error={errors.emergencyName}
       />
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.emergencyRelation')}
         placeholder={t('booking.emergencyRelation')}
         value={emergencyRelation}
@@ -518,6 +530,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
         error={errors.emergencyRelation}
       />
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.emergencyPhone')}
         placeholder={t('booking.emergencyPhone')}
         value={emergencyPhone}
@@ -532,6 +545,7 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
       <Text style={styles.sectionLabel}>{`${t('booking.optional')}`}</Text>
 
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.specialRequests')}
         placeholder={t('booking.specialRequests')}
         value={specialRequests}
@@ -539,12 +553,14 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
         multiline
       />
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.dietaryRequirements')}
         placeholder={t('booking.dietaryRequirements')}
         value={dietaryRequirements}
         onChangeText={setDietaryRequirements}
       />
       <InputField
+        inputComponent={SheetInput}
         label={t('booking.medicalConditions')}
         placeholder={t('booking.medicalConditions')}
         value={medicalConditions}
@@ -571,9 +587,9 @@ const BookingSheet = forwardRef<BookingSheetRef, Props>(({ config, onSuccess }, 
       backdropComponent={renderBackdrop}
       backgroundStyle={styles.background}
       handleIndicatorStyle={styles.indicator}
-      keyboardBehavior="interactive"
+      keyboardBehavior="extend"
       keyboardBlurBehavior="restore"
-      android_keyboardInputMode="adjustResize"
+      android_keyboardInputMode="adjustPan"
     >
       <View style={styles.sheetHeader}>
         <Text style={styles.sheetTitle}>

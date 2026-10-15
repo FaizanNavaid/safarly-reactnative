@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -32,6 +31,7 @@ import AppButton from '../../../components/buttons/app-button';
 import CustomHeader from '../../../components/custom-header';
 import { showSuccess, showError } from '../../../components/toast/AppToast';
 import { ApiError } from '../../../services/api/HttpHelper';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AppStatusBar from '../../../components/status-bar/AppStatusBar';
 
@@ -226,10 +226,12 @@ export default function BookingStepTwo() {
       <AppStatusBar />
       <CustomHeader title={t('booking.stepTwoTitle')} />
 
-      <ScrollView
+      <KeyboardAwareScrollView
         style={styles.scroll}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
+        bottomOffset={20}
+        keyboardShouldPersistTaps="handled"
       >
         <Text style={styles.sectionTitle}>{t('booking.traveler')}</Text>
 
@@ -408,7 +410,7 @@ export default function BookingStepTwo() {
           disabled={loading}
           containerStyle={styles.submitBtn}
         />
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 }

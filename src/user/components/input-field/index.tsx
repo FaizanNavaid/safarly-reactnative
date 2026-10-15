@@ -19,6 +19,7 @@ export default function InputField(props: InputFieldProps) {
     editable = true,
     containerStyle,
     inputStyle,
+    inputComponent: InputComponent = TextInput,
     ...rest
   } = props
 
@@ -37,7 +38,7 @@ export default function InputField(props: InputFieldProps) {
             {leftIcon}
           </TouchableOpacity>
         )}
-        <TextInput
+        <InputComponent
           style={[styles.input, inputStyle]}
           placeholder={placeholder}
           placeholderTextColor={theme.placeholder}

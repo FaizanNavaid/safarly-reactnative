@@ -4,7 +4,6 @@ import {
   Modal,
   Platform,
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -28,6 +27,7 @@ import AppButton from '../../../components/buttons/app-button'
 import CustomHeader from '../../../components/custom-header'
 import AppBottomSheet, { AppBottomSheetRef } from '../../../components/bottom-sheet/AppBottomSheet'
 import AppImage from '../../../components/app-image'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AppStatusBar from '../../../components/status-bar/AppStatusBar'
 
@@ -292,7 +292,7 @@ export default function BookingStepOne() {
       <CustomHeader title={t('booking.stepOneTitle')} />
      <View style={styles.safe}>
 
-      <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+      <KeyboardAwareScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false} bottomOffset={20} keyboardShouldPersistTaps="handled">
         <Text style={styles.sectionTitle}>{t('booking.bookingType')}</Text>
         <View style={styles.typeRow}>
           {(['tour', 'hotel'] as BookingType[]).map(type => (
@@ -445,7 +445,7 @@ export default function BookingStepOne() {
         />
 
         <AppButton title={t('booking.continue')} onPress={handleContinue} containerStyle={styles.continueBtn} />
-      </ScrollView>
+      </KeyboardAwareScrollView>
 
     </View>
    </SafeAreaView>

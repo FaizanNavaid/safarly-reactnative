@@ -68,6 +68,9 @@ const AppBottomSheet = forwardRef<AppBottomSheetRef, Props>(
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.background}
         handleIndicatorStyle={styles.indicator}
+        keyboardBehavior="extend"
+        keyboardBlurBehavior="restore"
+        android_keyboardInputMode="adjustPan"
       >
         {title && (
           <View style={styles.header}>
@@ -77,6 +80,7 @@ const AppBottomSheet = forwardRef<AppBottomSheetRef, Props>(
         <BottomSheetScrollView
           contentContainerStyle={styles.content}
           showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
         >
           {children}
         </BottomSheetScrollView>

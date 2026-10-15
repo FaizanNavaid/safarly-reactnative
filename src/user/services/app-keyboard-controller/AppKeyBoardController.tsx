@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller'
 
 interface AppKeyboardProps {
   children: ReactNode
@@ -7,19 +8,16 @@ interface AppKeyboardProps {
 
 export default function AppKeyboard({ children }: AppKeyboardProps) {
   return (
-    <KeyboardAvoidingView
+    <KeyboardAwareScrollView
       style={styles.flex}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}>
-      <ScrollView
-        style={styles.flex}
-        contentContainerStyle={styles.content}
-        keyboardShouldPersistTaps="handled"
-        showsVerticalScrollIndicator={false}
-        bounces={false}>
-        {children}
-      </ScrollView>
-    </KeyboardAvoidingView>
+      contentContainerStyle={styles.content}
+      keyboardShouldPersistTaps="handled"
+      showsVerticalScrollIndicator={false}
+      bounces={false}
+      bottomOffset={20}
+    >
+      {children}
+    </KeyboardAwareScrollView>
   )
 }
 

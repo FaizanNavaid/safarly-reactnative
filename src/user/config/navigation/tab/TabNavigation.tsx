@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { Platform, View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { createBottomTabNavigator, BottomTabBarProps } from '@react-navigation/bottom-tabs'
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -46,7 +46,7 @@ const AnimatedTabBar = ({ state, navigation }: BottomTabBarProps) => {
   ]
 
   return (
-    <View style={[styles.tabBarContainer, { paddingBottom: insets.bottom > 0 ? insets.bottom - scale(10) : scale(8) }]}>
+    <View style={[styles.tabBarContainer, { paddingBottom: Platform.OS === 'ios' && insets.bottom > 0 ? insets.bottom - scale(10) : scale(8) }]}>
       {tabs.map((tab, index) => {
         const isFocused = state.index === index
 

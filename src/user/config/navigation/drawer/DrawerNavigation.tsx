@@ -61,7 +61,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
 
   return (
     <>
-      <View style={[styles.drawerContainer, { paddingTop: insets.top, paddingBottom: insets.bottom > 0 ? insets.bottom - scale(10) : scale(8) }]}>
+      <View style={[styles.drawerContainer, { paddingTop: insets.top, paddingBottom: insets.bottom > 0 ? insets.bottom : scale(8) }]}>
         <View style={styles.header}>
           <Text style={styles.appName}>Safarly</Text>
         </View>

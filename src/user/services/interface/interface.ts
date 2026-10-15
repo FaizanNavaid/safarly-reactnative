@@ -1,7 +1,8 @@
 import { TextInputProps, ViewStyle, TextStyle } from 'react-native'
-import { ReactNode } from 'react'
+import { ComponentType, ReactNode } from 'react'
 
 export interface InputFieldProps extends TextInputProps {
+  inputComponent?: ComponentType<any>
   label?: string
   placeholder?: string
   value?: string
