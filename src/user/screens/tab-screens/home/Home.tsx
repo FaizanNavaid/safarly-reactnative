@@ -349,6 +349,12 @@ export default function Home() {
           </View>
         )}
 
+        <View style={styles.noteWrap}>
+          <Text style={styles.noteText}>
+            {t('home.practiceNote')}
+          </Text>
+        </View>
+
         <View style={styles.bottomSpacer} />
       </ScrollView>
     </SafeAreaView>
@@ -531,6 +537,21 @@ const getStyles = (theme: ThemeColors) =>
       fontSize: scale(13),
       fontWeight: '600',
       color: theme.buttonText,
+    },
+    noteWrap: {
+      marginTop: scale(20),
+      marginHorizontal: scale(16),
+      padding: scale(12),
+      backgroundColor: theme.cardBg,
+      borderRadius: scale(10),
+      borderWidth: 1,
+      borderColor: theme.border,
+    },
+    noteText: {
+      fontSize: scale(11),
+      color: theme.subText,
+      textAlign: 'center',
+      lineHeight: scale(16),
     },
     bottomSpacer: {
       height: scale(24),

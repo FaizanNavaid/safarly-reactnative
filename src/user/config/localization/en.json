@@ -156,7 +156,8 @@
     "perNight": "per night",
     "noData": "No data available",
     "errorLoading": "Something went wrong",
-    "retry": "Retry"
+    "retry": "Retry",
+    "practiceNote": "This project is built for code optimization & practice only. The data displayed is locally saved on the backend for UI purposes."
   },
   "detail": {
     "errorLoading": "Could not load details",
