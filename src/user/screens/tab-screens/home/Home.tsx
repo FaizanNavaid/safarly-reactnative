@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
-  ActivityIndicator,
   Dimensions,
   FlatList,
+  Image,
   RefreshControl,
   ScrollView,
   StyleSheet,
@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { useTheme } from '../../../services/style/theme/useTheme';
@@ -39,6 +39,7 @@ import TourCard from '../../../components/cards/TourCard';
 import HotelCard from '../../../components/cards/HotelCard';
 import AppStatusBar from '../../../components/status-bar/AppStatusBar';
 import InputField from '../../../components/input-field';
+import HomeSkeleton from '../../../components/skeleton/HomeSkeleton';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 const FEATURED_CARD_W = SCREEN_W - scale(48);
@@ -49,7 +50,7 @@ export default function Home() {
   const theme = useTheme();
   const styles = getStyles(theme);
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const firstName = useAppSelector(state => state.user.firstName);
+  const { firstName, avatar } = useAppSelector(state => state.user);
   const token = useAppSelector(state => state.user.token);
 
   const [dashboard, setDashboard] = useState<DashboardData | null>(null);
@@ -143,9 +144,7 @@ export default function Home() {
     return (
       <SafeAreaView edges={['top']} style={styles.safe}>
         <AppStatusBar />
-        <View style={styles.centered}>
-          <ActivityIndicator size="large" color={theme.primary} />
-        </View>
+        <HomeSkeleton />
       </SafeAreaView>
     );
   }
@@ -171,6 +170,19 @@ export default function Home() {
   return (
     <SafeAreaView edges={['top']} style={styles.safe}>
       <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.avatarBtn}
+          onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+          activeOpacity={0.7}
+        >
+          {avatar ? (
+            <Image source={{ uri: avatar }} style={styles.avatarImage} />
+          ) : (
+            <Text style={styles.avatarInitial}>
+              {firstName ? firstName.charAt(0).toUpperCase() : '?'}
+            </Text>
+          )}
+        </TouchableOpacity>
         <View style={styles.headerLeft}>
           <Text style={styles.greeting}>
             {t('home.greeting')}
@@ -357,8 +369,29 @@ const getStyles = (theme: ThemeColors) =>
       paddingTop: scale(6),
       paddingBottom: scale(8),
     },
+    avatarBtn: {
+      width: scale(38),
+      height: scale(38),
+      borderRadius: scale(19),
+      backgroundColor: theme.primaryLight,
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+      borderWidth: scale(2),
+      borderColor: theme.primary,
+    },
+    avatarImage: {
+      width: '100%',
+      height: '100%',
+    },
+    avatarInitial: {
+      fontSize: scale(16),
+      fontWeight: '700',
+      color: theme.primary,
+    },
     headerLeft: {
       flex: 1,
+      marginLeft: scale(10),
     },
     greeting: {
       fontSize: scale(20),
