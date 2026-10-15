@@ -1,4 +1,3 @@
-import i18n from '../../config/localization/i18n'
 import { store } from '../../config/redux/store/Store'
 import { setTheme, ThemeMode } from '../../config/redux/slice/themeSlice'
 import { setLanguage, AppLanguage } from '../../config/redux/slice/languageSlice'
@@ -13,7 +12,6 @@ export const changeAppTheme = (mode: ThemeMode): void => {
 
 export const changeAppLanguage = (language: AppLanguage): void => {
   store.dispatch(setLanguage(language))
-  i18n.changeLanguage(language)
 }
 
 export const logoutUser = async (): Promise<void> => {

@@ -377,8 +377,6 @@ const getStyles = (theme: ThemeColors) =>
       alignItems: 'center',
       justifyContent: 'center',
       overflow: 'hidden',
-      borderWidth: scale(2),
-      borderColor: theme.primary,
     },
     avatarImage: {
       width: '100%',
